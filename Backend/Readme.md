@@ -100,3 +100,80 @@ The request expects a JSON object with the following structure:
   }
 }
 ```
+
+# **API Documentation: User Profile and Logout**
+
+## **Endpoints**
+
+1. **`GET /users/profile`**  
+   Retrieves the profile information of the authenticated user.
+
+2. **`GET /users/logout`**  
+   Logs out the authenticated user by blacklisting the token and clearing the authentication cookie.
+
+---
+
+## **1. Endpoint: `GET /users/profile`**
+
+### **Description**
+This endpoint allows an authenticated user to fetch their profile details. The request must include a valid token for authentication.
+
+---
+
+### **Request**
+
+#### **Headers**
+The `Authorization` header must include a valid JWT token in the following format:
+
+- `Authorization: Bearer <token>`
+
+---
+
+### **Response**
+
+#### **Success (200 OK)**
+
+Returns the authenticated user's profile details.
+
+##### **Example**
+```json
+{
+  "fullname": {
+    "firstname": "Jane",
+    "lastname": "Doe"
+  },
+  "email": "janedoe@example.com"
+}
+```
+
+# **API Documentation: User Logout**
+
+## **Endpoint**
+### `GET /users/logout`
+
+---
+
+## **Description**
+This endpoint logs out an authenticated user by:
+1. Blacklisting the provided JWT token to prevent further use.
+2. Clearing the `token` cookie from the user's browser.
+
+---
+
+## **Request**
+
+### **Headers**
+The `Authorization` header must include a valid JWT token, or the token must be present in cookies.
+
+- **Authorization Header (Optional):**  
+  ```text
+  Authorization: Bearer <token>
+  ```
+## **Example Response**
+
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
