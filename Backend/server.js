@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import { connectDB } from './config/db.js'
 import userRoutes from './routes/user.route.js'
+import captainRoutes from './routes/captain.route.js'
 import cookieParser from 'cookie-parser'
 
 // Loading env variables
@@ -24,6 +25,7 @@ app.use(cookieParser())
 app.get('/',(req,res)=>{res.send("Server is up and running")})
 
 app.use('/users',userRoutes)
+app.use('/captains',captainRoutes)
 
 const PORT = process.env.PORT  ||  3000
 
